@@ -1,4 +1,29 @@
 {
+  "en": {
+    "label1": "Name",
+    "label2": "Designation",
+    "label3": "Company",
+    "label4": "Phone Number",
+    "label5": "Email",
+    "label6": "Linked In",
+    "label7": "Website",
+    "label8": "Twitter",
+    "label9": "View Profile",
+    "submit": "Submit"
+  },
+  "fr": {
+    "label1": "Nom",
+    "label2": "Fonction",
+    "label3": "Société",
+    "label4": "Numéro de téléphone",
+    "label5": "E-mail",
+    "label6": "Linked In",
+    "label7": "Site Web",
+    "label8": "Twitter",
+    "label9": "Voir le profil",
+    "submit": "Soumettre"
+  },
+  "data": {
     "name": "Sultan",
     "designation": "Software Engineer",
     "company": "XYZ Company",
@@ -8,4 +33,4 @@
     "website": "www.xyz.com",
     "twitter": "www.twitter.com"
   }
-  
+}

@@ -9,16 +9,16 @@
     "label7": "Website",
     "label8": "Twitter",
     "label9": "View Profile",
-    "submit": "Submit"
-  },
-  "data": {
-    "name": "Sultan",
-    "designation": "Software Engineer",
-    "company": "XYZ Company",
-    "phone_number": "1234567890",
-    "email": "xyz@gmail.com",
-    "linkedin": "https://www.linkedin.com/in",
-    "website": "www.xyz.com",
-    "twitter": "www.twitter.com"
+    "submit": "Submit",
+    "data": {
+      "name": "Sultan",
+      "designation": "Software Engineer",
+      "company": "XYZ Company",
+      "phone_number": "1234567890",
+      "email": "xyz@gmail.com",
+      "linkedin": "https://www.linkedin.com/in",
+      "website": "www.xyz.com",
+      "twitter": "www.twitter.com"
+    }
   }
 }

@@ -1,46 +1,26 @@
 <?php
-session_start();
+
 
 function loadLabels($langCode) {
-    $labelsPath = "json/labels.json";
+    $labelsPath = "json/{$langCode}.json";
 
     if (file_exists($labelsPath)) {
         $json = file_get_contents($labelsPath);
-        $data = json_decode($json, true);
+        $labels = json_decode($json, true);
 
-        return isset($data[$langCode]) ? $data[$langCode] : $data['en'];
+        return $labels;
     } else {
         // Fallback to default language (e.g., English)
-        return loadLabels('en');
-    }
-}
-
-function loadData($langCode) {
-    $dataPath = "json/labels.json";
-
-    if (file_exists($dataPath)) {
-        $json = file_get_contents($dataPath);
-        $data = json_decode($json, true);
-
-        return isset($data['data'][$langCode]) ? $data['data'][$langCode] : $data['data']['en'];
-    } else {
-        // Return an empty array if the data file is not found
         return [];
     }
-}
-
-function getLabel($labelKey, $langCode) {
-    $labels = loadLabels($langCode);
-    return isset($labels[$labelKey]) ? $labels[$labelKey] : $labelKey;
 }
 
 // Use the language selected in the index page or default to English
 $selectedLang = isset($_SESSION['lang']) ? $_SESSION['lang'] : 'en';
 
-// Load data based on the selected language
-$data = loadData($selectedLang);
+// Load labels for the selected language
+$labels = loadLabels($selectedLang);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,25 +31,41 @@ $data = loadData($selectedLang);
 </head>
 <body>
 
-    <h1><?php echo getLabel('label9', $selectedLang); ?></h1>
+    
 
     <table border="1">
         <?php 
-        // Ensure $data is defined before using it
-        if (!empty($data)):
-            foreach ($data as $key => $value): 
+        // Ensure $labels is not empty before using it
+        if (!empty($labels)):
+            foreach ($labels as $labelKey => $labelValue): 
+                if ($labelKey !== 'data'):
         ?>
             <tr>
-                <th><?php echo getLabel('label' . ((int)$key + 1), $selectedLang); ?></th>
-                <td><?php echo $value; ?></td>
+                <th><?php echo $labelKey; ?></th>
+                <td><?php echo $labelValue; ?></td>
             </tr>
-        <?php endforeach;
-        endif; ?>
+        <?php 
+                endif;
+            endforeach;
+        endif; 
+        // Additional data from the "data" section
+        if (!empty($labels['data'])):
+        ?>
+            <tr>
+                <th colspan="2">Data</th>
+            </tr>
+            <?php foreach ($labels['data'] as $dataKey => $dataValue): ?>
+                <tr>
+                    <td><?php echo $dataKey; ?></td>
+                    <td><?php echo $dataValue; ?></td>
+                </tr>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </table>
 
     <p>
         <a href="?lang=en">English</a> |
-        <a href="?lang=fr">Français</a>
+        <a href="?lang=ar">العربية</a>
     </p>
 
     <p><a href="index.php">Go back to Index Page</a></p>
