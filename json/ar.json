@@ -1,0 +1,24 @@
+{
+    "ar": {
+    "label1": "اسم",
+    "label2": "تعيين",
+    "label3":"شركة",
+    "label4":"رقم التليفون",
+    "label5":"بريد إلكتروني",
+    "label6":"ينكدين",
+    "label7":"موقع إلكتروني",
+    "label8":"تويتر",
+    "label9":"عرض الصفحة الشخصية",
+    "submit": "يُقدِّم"
+  },
+  "data": {
+    "name": "سلطان",
+    "designation": "مهندس برمجيات",
+    "company": "XYZ شركة",
+    "phone_number": "1234567890",
+    "email": "xyz@gmail.com",
+    "linkedin": "https://www.linkedin.com/in",
+    "website": "www.xyz.com",
+    "twitter": "www.twitter.com"
+  }
+}

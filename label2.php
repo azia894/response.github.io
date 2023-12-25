@@ -2,30 +2,16 @@
 session_start();
 
 function loadLabels($langCode) {
-    $labelsPath = "json/labels.json";
+    $filePath = "json/labels.json";
 
-    if (file_exists($labelsPath)) {
-        $json = file_get_contents($labelsPath);
+    if (file_exists($filePath)) {
+        $json = file_get_contents($filePath);
         $data = json_decode($json, true);
 
         return isset($data[$langCode]) ? $data[$langCode] : $data['en'];
     } else {
         // Fallback to default language (e.g., English)
         return loadLabels('en');
-    }
-}
-
-function loadData($langCode) {
-    $dataPath = "json/labels.json";
-
-    if (file_exists($dataPath)) {
-        $json = file_get_contents($dataPath);
-        $data = json_decode($json, true);
-
-        return isset($data['data'][$langCode]) ? $data['data'][$langCode] : $data['data']['en'];
-    } else {
-        // Return an empty array if the data file is not found
-        return [];
     }
 }
 
@@ -36,9 +22,6 @@ function getLabel($labelKey, $langCode) {
 
 // Use the language selected in the index page or default to English
 $selectedLang = isset($_SESSION['lang']) ? $_SESSION['lang'] : 'en';
-
-// Load data based on the selected language
-$data = loadData($selectedLang);
 ?>
 
 <!DOCTYPE html>
@@ -56,11 +39,11 @@ $data = loadData($selectedLang);
     <table border="1">
         <?php 
         // Ensure $data is defined before using it
-        if (!empty($data)):
-            foreach ($data as $key => $value): 
+        if (isset($data['data'])):
+            foreach ($data['data'] as $key => $value): 
         ?>
             <tr>
-                <th><?php echo getLabel('label' . ((int)$key + 1), $selectedLang); ?></th>
+                <th><?php echo getLabel('label' . ($key + 1), $selectedLang); ?></th>
                 <td><?php echo $value; ?></td>
             </tr>
         <?php endforeach;
